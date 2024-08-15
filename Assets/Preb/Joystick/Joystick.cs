@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] RectTransform ThumbStick;
     [SerializeField] RectTransform Background;
     [SerializeField] RectTransform CenterTrans;
 
+    bool bWasDragging;
+
     public delegate void OnStickValueUpdate(Vector2 inputVal); // sử dụng delegate này để lưu trữ tham chiếu của các hàm có kiểu trả về, tham số tương tự
     public event OnStickValueUpdate onStickValueUpdate; // event để gọi mỗi khi có sự thay đổi - nó sẽ gọi tới mọi hàm đc đăng ký với event này
+
+    public delegate void OnStickTapped();
+    public event OnStickTapped onStickTapped;
 
     private void Start()
     {
@@ -26,18 +32,24 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         onStickValueUpdate?.Invoke(inputVal); //Dòng này gọi (kích hoạt) tất cả các phương thức đã đăng ký với event onStickValueUpdate và truyền inputVal làm tham số.
                                               //Dấu ?. là null-conditional operator, đảm bảo rằng event chỉ được kích hoạt nếu có bất kỳ
                                               //đối tượng nào đã đăng ký, nếu không có đối tượng nào đăng ký, nó sẽ không làm gì cả.  
+        bWasDragging = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Background.position = eventData.position; //Khi ấn vào background và joystick sẽ di chuyển đến vị trí ngón tay tạo cảm giác thuận lợi, không gò bó thao tác joystick 1 chỗ cố định
         ThumbStick.position = eventData.position; //
+        bWasDragging = false;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         Background.position = CenterTrans.position; //Khi nhả tay ra trả về vị trí cũ (lưu ý là vị trí của toàn bộ back và joy đều không cố định như trong hàm Down giải thích)
-        ThumbStick.position = Background.position;  //Trả về vị trí ban đầu
+        ThumbStick.position = Background.position;
         onStickValueUpdate?.Invoke(Vector2.zero);   //đưa tham số 0 khi nhả thao tác với joystick
+        if (!bWasDragging) 
+        {
+            onStickTapped?.Invoke();
+        }
     }
 }

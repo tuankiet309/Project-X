@@ -6,6 +6,9 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] string AttachSlotTag;
     [SerializeField] AnimatorOverrideController overrideController;
+    [SerializeField] protected float amount = -2f;
+
+    public abstract void Attack() ;
     public string GetAttachSlotTag()
     {
         return AttachSlotTag;
@@ -27,5 +30,14 @@ public abstract class Weapon : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    protected void DamageOnGameObject(GameObject gameObject,float amount)
+    {
+        HealthComponent healthComponent = gameObject.GetComponent<HealthComponent>();
+        if (healthComponent != null)
+        {
+            healthComponent.ChangeHealth(-amount);
+        }
+
+    }
 
 }

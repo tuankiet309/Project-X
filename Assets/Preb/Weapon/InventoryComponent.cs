@@ -42,6 +42,10 @@ public class InventoryComponent : MonoBehaviour
         int nextWeaponIndex = (currentWeaponIndex+1)%weapons.Count;     
         EquipWeapon(nextWeaponIndex);
     }
+    public Weapon GetActiveWeapon()
+    {
+        return weapons[currentWeaponIndex];
+    }
 
     private void EquipWeapon(int weaponIndex)
     {

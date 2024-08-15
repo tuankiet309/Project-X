@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,24 +11,38 @@ public class Player : MonoBehaviour
     [SerializeField] CharacterController characterController; //Built-in character controller do lười =)))
     [SerializeField] float moveSpeed = 1f; //
     [SerializeField] float turnSpeed = 1f; //
-
     Animator animator;
     float animationTurnSpeed;
     [SerializeField] float animTurnSpeedToLerp;
-
     Vector2 moveInput; //biến để chứa giá trị từ event trả về
     Vector2 aimInput;
     CameraController cameraController; //Lấy script cameracontroller về để thực hiện truyền giá trị để quay camera khi di chuyển
-
     Camera mainCam;
 
+    [Header("Inventory")]
+    [SerializeField] InventoryComponent inventoryComponent;
     void Start()
     {
         mainCam = Camera.main; //Lấy camera để thực hiện tính toán di chuyển nhật vật theo hướng của camera
         moveStick.onStickValueUpdate += moveStickUpdate; // Đây không phải phép cộng, đây là thực hiện đăng ký hàm moveStickUpdate vào event onStickValueUpdate của joy move, để mỗi khi
         aimStick.onStickValueUpdate += aimStickUpdate;   // drag sẽ được truyển tham chiếu giá trị mới. tương tự  đăng ký hàm aimStickUpdate vào event onStickValueUpdate của joy aim
+        aimStick.onStickTapped += StartSwitchWeapon;
         cameraController = FindObjectOfType<CameraController>();
         animator = GetComponent<Animator>();
+    }
+
+    public void AttackingPoint()
+    {
+        inventoryComponent.GetActiveWeapon().Attack();
+    }
+    private void StartSwitchWeapon()
+    {
+        animator.SetTrigger("switching");
+        
+    }
+    public void SwitchWeapon()
+    {
+        inventoryComponent.NextWeapon();    
     }
     void moveStickUpdate(Vector2 inputVal) //Đây là hàm đã được đăng ký, thay đổi giá trị moveInput bằng với giá trị tham số inputVal trả về từ event onStickValueUpdate từ joy move
     {
@@ -36,6 +51,14 @@ public class Player : MonoBehaviour
     void aimStickUpdate(Vector2 inputVal) //Đây là hàm đã được đăng ký, thay đổi giá trị aim bằng với giá trị tham số inputVal trả về từ event onStickValueUpdate từ joy aim
     { 
         aimInput = inputVal;
+        if(aimInput.magnitude != 0)
+        {
+            animator.SetBool("shooting", true);
+        }
+        else
+        {
+            animator.SetBool("shooting", false);
+        }
     }
     Vector3 stickInputToWorldDirection(Vector2 inputVal) //hàm này sử lí các giá trị từ các joystick để chuyển thành hướng/vector để tác động lên nhân vật theo dựa trên hướng của camera
     {

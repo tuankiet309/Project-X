@@ -662,7 +662,7 @@ ModelImporter:
     second: Ellen_Body
   - first:
       74: 7400000
-    second: Ellen_Idle
+    second: Hold_Gun_Idle
   - first:
       74: 7400002
     second: EllenIdleShort
@@ -718,7 +718,11 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Ellen_Spine' has translation animation
+      that will be discarded.\n\t'Ellen_Left_UpperLeg' has scale animation that will
+      be discarded.\n\t'Ellen_Left_LowerLeg' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -732,7 +736,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Ellen_Idle
+      name: Hold_Gun_Idle
       takeName: Take 001
       internalID: 0
       firstFrame: 1
@@ -748,7 +752,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
