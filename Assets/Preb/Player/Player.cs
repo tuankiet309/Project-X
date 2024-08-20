@@ -9,40 +9,40 @@ public class Player : MonoBehaviour
     [SerializeField] Joystick moveStick; //Kết nối tới script của joystick để thực hiện di chuyển nhân vật khi thao tác với joy
     [SerializeField] Joystick aimStick;
     [SerializeField] CharacterController characterController; //Built-in character controller do lười =)))
-    [SerializeField] float moveSpeed = 1f; //
-    [SerializeField] float turnSpeed = 1f; //
-    Animator animator;
-    float animationTurnSpeed;
-    [SerializeField] float animTurnSpeedToLerp;
-    Vector2 moveInput; //biến để chứa giá trị từ event trả về
-    Vector2 aimInput;
+    [SerializeField] float moveSpeed = 1f; // tốc độ di chuyển
+    [SerializeField] float turnSpeed = 1f; // tốc độ quay người
+    Animator animator; //
+    float animationTurnSpeed; //tốc độ hoạt ảnh khi quay người
+    [SerializeField] float animTurnSpeedToLerp; // độ trễ khi quay người - chủ yếu để animation trông mượt và không bị khựng
+    Vector2 moveInput; //biến để chứa giá trị từ event trả về từ moveStick
+    Vector2 aimInput; // biến chứa giá trị từ evetn trả về từ aimstick
     CameraController cameraController; //Lấy script cameracontroller về để thực hiện truyền giá trị để quay camera khi di chuyển
-    Camera mainCam;
+    Camera mainCam; //camera
 
     [Header("Inventory")]
-    [SerializeField] InventoryComponent inventoryComponent;
+    [SerializeField] InventoryComponent inventoryComponent; // Lấy scrript inventory để thực hiện đổi đồ
     void Start()
     {
         mainCam = Camera.main; //Lấy camera để thực hiện tính toán di chuyển nhật vật theo hướng của camera
         moveStick.onStickValueUpdate += moveStickUpdate; // Đây không phải phép cộng, đây là thực hiện đăng ký hàm moveStickUpdate vào event onStickValueUpdate của joy move, để mỗi khi
         aimStick.onStickValueUpdate += aimStickUpdate;   // drag sẽ được truyển tham chiếu giá trị mới. tương tự  đăng ký hàm aimStickUpdate vào event onStickValueUpdate của joy aim
-        aimStick.onStickTapped += StartSwitchWeapon;
-        cameraController = FindObjectOfType<CameraController>();
-        animator = GetComponent<Animator>();
+        aimStick.onStickTapped += StartSwitchWeapon;     // Đăng ký hàm SwitchWeapon mỗi khi tap vào aimStick
+        cameraController = FindObjectOfType<CameraController>(); //lấy cameracoltrller từ camera
+        animator = GetComponent<Animator>(); // Lấy animator của player
     }
 
-    public void AttackingPoint()
+    public void AttackingPoint() //Hàm này được gọi trong animation event của từng weapon, chạy khi đến  1 frame
     {
-        inventoryComponent.GetActiveWeapon().Attack();
+        inventoryComponent.GetActiveWeapon().Attack(); // Thực hiện chạy function tấn công của vũ khi đang trang bị.
     }
-    private void StartSwitchWeapon()
+    private void StartSwitchWeapon() //Hàm thay đổi vũ khí
     {
-        animator.SetTrigger("switching");
+        animator.SetTrigger("switching"); //Bắt đầu trigger để thực hiện animation đổi vũ khi
         
     }
-    public void SwitchWeapon()
+    public void SwitchWeapon() //Hàm này được gọi khi animation đổi vũ khi xẩy ra bằng animation event ở 1 frame nhất định
     {
-        inventoryComponent.NextWeapon();    
+        inventoryComponent.NextWeapon();    //Đổi vũ khi tiếp theo
     }
     void moveStickUpdate(Vector2 inputVal) //Đây là hàm đã được đăng ký, thay đổi giá trị moveInput bằng với giá trị tham số inputVal trả về từ event onStickValueUpdate từ joy move
     {
@@ -51,13 +51,13 @@ public class Player : MonoBehaviour
     void aimStickUpdate(Vector2 inputVal) //Đây là hàm đã được đăng ký, thay đổi giá trị aim bằng với giá trị tham số inputVal trả về từ event onStickValueUpdate từ joy aim
     { 
         aimInput = inputVal;
-        if(aimInput.magnitude != 0)
+        if(aimInput.magnitude != 0) //Nếu aimInput có giá trị aka aimStick đc kéo
         {
-            animator.SetBool("shooting", true);
+            animator.SetBool("shooting", true); //set biến thành true hực hiện chuyển qua animation bắn
         }
         else
         {
-            animator.SetBool("shooting", false);
+            animator.SetBool("shooting", false); //set biến thành false chuyển qua animation dừng bắn
         }
     }
     Vector3 stickInputToWorldDirection(Vector2 inputVal) //hàm này sử lí các giá trị từ các joystick để chuyển thành hướng/vector để tác động lên nhân vật theo dựa trên hướng của camera
@@ -91,13 +91,13 @@ public class Player : MonoBehaviour
         {
             aimDir = stickInputToWorldDirection(aimInput);
         }
-        RotateTowards(aimDir);
+        RotateTowards(aimDir); //Thực hiện quay nhân vật theo hướng đã được xử lí
 
     }
 
     private void UpdateCamera()
     {
-        if (moveInput.magnitude != 0 && aimInput.magnitude!=0&& cameraController != null)
+        if (moveInput.magnitude != 0 && aimInput.magnitude!=0&& cameraController != null) //Nếu 2 stick đc kéo thực hiện quay camera
         {
             cameraController.AddYawnInput(moveInput.x); //truyền tham số giá trị khi joystick kéo trái kéo phải để làm camera quay theo
         }
@@ -105,17 +105,19 @@ public class Player : MonoBehaviour
 
     private void RotateTowards(Vector3 aimDir)
     {
-        float currentTurnSpeed = 0f;
+        float currentTurnSpeed = 0f; //Tốc độ quay hiện tại
         if (aimDir.magnitude != 0) //Nêu aimDir khác không, thực hiện quay nhân vật 
         {
-            Quaternion preRotate = transform.rotation;
+            //Các câu lệnh dưới phục vụ việc quay nhật vật 1 cách smooth mà không bị diễn ra tức khắc (đùng cái dừng animation)
+            Quaternion preRotate = transform.rotation; //Hướng trước khi quay
             float rotationSpeedAlpha = turnSpeed * Time.deltaTime; // tính toán tốc độ quay ko phụ thuộc vào framerate
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimDir, Vector3.up), rotationSpeedAlpha); // Quay từ từ theo trục y để quay nhân vật xung quanh
-            Quaternion currentRotate = transform.rotation;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimDir, Vector3.up), rotationSpeedAlpha); // Quay từ từ theo trục y để quay nhân vật xung 
+            Quaternion currentRotate = transform.rotation; 
             float Dir = Vector3.Dot(aimDir,transform.right) >0 ? 1 : -1;
             float rotationDelta = Quaternion.Angle(preRotate, currentRotate) * Dir;
             currentTurnSpeed = rotationDelta / Time.deltaTime;
         }
+
         animationTurnSpeed = Mathf.Lerp(animationTurnSpeed, currentTurnSpeed, Time.deltaTime * animTurnSpeedToLerp);
         animator.SetFloat("turnSpeed", animationTurnSpeed);
     }

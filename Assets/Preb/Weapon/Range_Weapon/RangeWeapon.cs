@@ -1,21 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeWeapon : Weapon
 {
-    AimComponent aimComponent;
-    [SerializeField] ParticleSystem bulletFX;
+    AimComponent aimComponent; //Lấy aimCompoent
+    [SerializeField] ParticleSystem bulletFX; //Hiệu ứng bắn súng
     private void Start()
     {
-        aimComponent = GetComponent<AimComponent>();
+        aimComponent = GetComponent<AimComponent>(); //Gán aimCompent
     }
-    public override void Attack()
+    public override void Attack() //Hàm tấn công
     {
-        GameObject target = aimComponent.GetAimTarget(out Vector3 aimDir);
-        DamageOnGameObject(target, amount);
-        bulletFX.transform.rotation = Quaternion.LookRotation(aimDir);
-        bulletFX.Emit(bulletFX.emission.GetBurst(0).maxCount);
+        GameObject target = aimComponent.GetAimTarget(out Vector3 aimDir); //Lấy ra vật đang bị ngắm tới
+        DamageOnGameObject(target, amount); //Gây sát thương lên vật bị ngắm tới
+        bulletFX.transform.rotation = Quaternion.LookRotation(aimDir); //Cài đặt hiệu ứng
+        bulletFX.Emit(bulletFX.emission.GetBurst(0).maxCount); //Bắt đầu hiệu ứng
     }
 
 

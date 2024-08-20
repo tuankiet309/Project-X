@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582533327487917493}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5338368, y: 0.22667612, z: -0.44426328, w: 0.682837}
+  m_LocalPosition: {x: 0.025, y: 0.034, z: -0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7950731821077745284}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -31.846, y: 67.34, z: -87.619}
 --- !u!1 &4135761123133914466
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 138100822641276537}
   - component: {fileID: 1982802886539654306}
   - component: {fileID: 1436339190625670262}
+  - component: {fileID: 766457490251213689}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -129,9 +130,10 @@ MonoBehaviour:
   moveStick: {fileID: 0}
   aimStick: {fileID: 0}
   characterController: {fileID: 2794478181406024690}
-  moveSpeed: 21
-  turnSpeed: 30
-  animTurnSpeedToLerp: 0
+  moveSpeed: 6
+  turnSpeed: 8
+  animTurnSpeedToLerp: 10
+  inventoryComponent: {fileID: 1436339190625670262}
 --- !u!114 &1436339190625670262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +153,18 @@ MonoBehaviour:
   weaponSlots:
   - {fileID: 401217711869044947}
   - {fileID: 7097204428633527789}
+--- !u!114 &766457490251213689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135761123133914466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b711f51220bb9294ab510b29c0dd593b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8963219501373188816
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +176,7 @@ GameObject:
   - component: {fileID: 7097204428633527789}
   m_Layer: 0
   m_Name: Rifle_Attach_Slot
-  m_TagString: Untagged
+  m_TagString: RifleAttachSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,13 +189,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8963219501373188816}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5835479, y: -0.5430039, z: 0.44315365, w: 0.41016272}
+  m_LocalPosition: {x: 0.195, y: 0.055, z: 0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7950731821077745284}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.147, y: -105.71, z: 94.234}
 --- !u!1001 &7950731821077877352
 PrefabInstance:
   m_ObjectHideFlags: 0

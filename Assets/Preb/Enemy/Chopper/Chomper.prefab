@@ -46,6 +46,10 @@ GameObject:
   - component: {fileID: -6979485003966210081}
   - component: {fileID: 7057794840693418108}
   - component: {fileID: 8869976441191746685}
+  - component: {fileID: 7061774671428893048}
+  - component: {fileID: 6891220335019373919}
+  - component: {fileID: 483650788804283510}
+  - component: {fileID: 7315420289390354350}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -183,6 +187,65 @@ MonoBehaviour:
     type: 3}
   attachedPoin: {fileID: 8654673743461228280}
   healthComponent: {fileID: 7057794840693418108}
+--- !u!114 &7061774671428893048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693732732724339255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6adf6d737d8e5444a897a8cc8770bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forgetTime: 3
+  awareDistance: 2
+--- !u!114 &6891220335019373919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693732732724339255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f3e9aaebb5f814e9e007b113cbf790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forgetTime: 3
+  sight_Distance: 5
+  sight_Half_Angle: 30
+  eye_height: 0.8
+--- !u!114 &483650788804283510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693732732724339255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7748b9c8dc8744bb84f0d786f8d8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  senses:
+  - {fileID: 7061774671428893048}
+  - {fileID: 6891220335019373919}
+--- !u!114 &7315420289390354350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693732732724339255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1872521baf22d854b82ce1e251381797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forgetTime: 3
+  hitForget: 2
 --- !u!1001 &211557132758914471
 PrefabInstance:
   m_ObjectHideFlags: 0
