@@ -43,8 +43,11 @@ GameObject:
   - component: {fileID: 2794478181406024690}
   - component: {fileID: 138100822641276537}
   - component: {fileID: 1982802886539654306}
+  - component: {fileID: 3081468033483802948}
   - component: {fileID: 1436339190625670262}
   - component: {fileID: 766457490251213689}
+  - component: {fileID: 2522963352549437424}
+  - component: {fileID: 5429443421852066662}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -129,11 +132,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveStick: {fileID: 0}
   aimStick: {fileID: 0}
-  characterController: {fileID: 2794478181406024690}
   moveSpeed: 6
-  turnSpeed: 8
+  TeamID: 1
   animTurnSpeedToLerp: 10
+  healthComponent: {fileID: 2522963352549437424}
+  healthBar: {fileID: 0}
   inventoryComponent: {fileID: 1436339190625670262}
+--- !u!114 &3081468033483802948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135761123133914466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958a80157c3ac8348b22ae641b69727d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 20
 --- !u!114 &1436339190625670262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +182,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b711f51220bb9294ab510b29c0dd593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2522963352549437424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135761123133914466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d43b3653cdfde43bfbc98e33100861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+--- !u!114 &5429443421852066662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135761123133914466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65c57494439b5a4e9eb280da16dc885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 7950731821072570826}
+  damageEmissionColor: {r: 1, g: 1, b: 1, a: 0}
+  blinkSpeed: 20
+  EmmissionColor: _Addition
+  healthComponent: {fileID: 2522963352549437424}
+  shaker: {fileID: 0}
 --- !u!1 &8963219501373188816
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +322,12 @@ PrefabInstance:
       addedObject: {fileID: 401217711869044947}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
+--- !u!137 &7950731821072570826 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700002, guid: a5674d01884853d4e8f2386a171e14d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7950731821077877352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7950731821077743950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400166, guid: a5674d01884853d4e8f2386a171e14d9,

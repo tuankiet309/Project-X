@@ -1,23 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,ITeamInterface
 {
     // Start is called before the first frame update
-    [SerializeField] Joystick moveStick; //Kết nối tới script của joystick để thực hiện di chuyển nhân vật khi thao tác với joy
+    [SerializeField] Joystick moveStick; //Kết nối tới script của joystick để thực hiện lấy giá trị từ joy
     [SerializeField] Joystick aimStick;
-    [SerializeField] CharacterController characterController; //Built-in character controller do lười =)))
     [SerializeField] float moveSpeed = 1f; // tốc độ di chuyển
-    [SerializeField] float turnSpeed = 1f; // tốc độ quay người
-    Animator animator; //
+    [SerializeField] int TeamID = 1;
+    Animator animator; // animator
     float animationTurnSpeed; //tốc độ hoạt ảnh khi quay người
     [SerializeField] float animTurnSpeedToLerp; // độ trễ khi quay người - chủ yếu để animation trông mượt và không bị khựng
+
     Vector2 moveInput; //biến để chứa giá trị từ event trả về từ moveStick
     Vector2 aimInput; // biến chứa giá trị từ evetn trả về từ aimstick
     CameraController cameraController; //Lấy script cameracontroller về để thực hiện truyền giá trị để quay camera khi di chuyển
     Camera mainCam; //camera
+    MovementComponent movement;
+    CharacterController characterController; //Built-in character controller do lười =)))
+
+    [Header("Health And Damage")]
+    [SerializeField] HealthComponent healthComponent;
+    [SerializeField] PlayerHealthBar healthBar;
+    [SerializeField] UIManager UImanager;
 
     [Header("Inventory")]
     [SerializeField] InventoryComponent inventoryComponent; // Lấy scrript inventory để thực hiện đổi đồ
@@ -29,8 +37,30 @@ public class Player : MonoBehaviour
         aimStick.onStickTapped += StartSwitchWeapon;     // Đăng ký hàm SwitchWeapon mỗi khi tap vào aimStick
         cameraController = FindObjectOfType<CameraController>(); //lấy cameracoltrller từ camera
         animator = GetComponent<Animator>(); // Lấy animator của player
+        movement = GetComponent<MovementComponent>();
+        characterController = GetComponent<CharacterController>();
+        healthComponent.onHealthChange += HeathChange;
+        healthComponent.BroadCastHealthValueImmediately();
+        healthComponent.onHealthEmpty += DeadSequence;
     }
 
+    private void DeadSequence()
+    {
+        animator.SetLayerWeight(2, 1);
+        animator.SetTrigger("isDead");
+        UImanager.SetGameplayControlEnable(false);
+        
+    }
+
+    private void HeathChange(float health, float delta, float maxHealth)
+    {
+        healthBar.UpdateHeath(health, delta, maxHealth);
+    }
+
+    public int GetTeamID()
+    {
+        return TeamID;
+    }
     public void AttackingPoint() //Hàm này được gọi trong animation event của từng weapon, chạy khi đến  1 frame
     {
         inventoryComponent.GetActiveWeapon().Attack(); // Thực hiện chạy function tấn công của vũ khi đang trang bị.
@@ -76,12 +106,18 @@ public class Player : MonoBehaviour
     private void PerformMove()
     {
         Vector3 moveDir = stickInputToWorldDirection(moveInput);  //Sau khi xử lí giá trị từ move joystick trả về thành hướng di chuyển của nhân vật theo hướng của camera, gán vào biến moveDir                                                            
+        
         characterController.Move(moveDir * Time.deltaTime * moveSpeed); //di chuyển nhân vật
+        
         UpdateAim(moveDir);
+
         float forward = Vector3.Dot(moveDir,transform.forward);
         float right = Vector3.Dot(moveDir,transform.right);
+        
         animator.SetFloat("forwardSpeed",forward);
         animator.SetFloat("rightSpeed", right);
+
+        characterController.Move(Vector3.down * Time.deltaTime * 10f);
     }
 
     private void UpdateAim(Vector3 moveDir)
@@ -97,27 +133,17 @@ public class Player : MonoBehaviour
 
     private void UpdateCamera()
     {
-        if (moveInput.magnitude != 0 && aimInput.magnitude!=0&& cameraController != null) //Nếu 2 stick đc kéo thực hiện quay camera
+        if ((moveInput.magnitude != 0 || aimInput.magnitude!=0) && cameraController != null) //Nếu 2 stick đc kéo thực hiện quay camera
         {
             cameraController.AddYawnInput(moveInput.x); //truyền tham số giá trị khi joystick kéo trái kéo phải để làm camera quay theo
+            UnityEngine.Debug.Log(moveInput.x);
         }
     }
 
     private void RotateTowards(Vector3 aimDir)
     {
-        float currentTurnSpeed = 0f; //Tốc độ quay hiện tại
-        if (aimDir.magnitude != 0) //Nêu aimDir khác không, thực hiện quay nhân vật 
-        {
-            //Các câu lệnh dưới phục vụ việc quay nhật vật 1 cách smooth mà không bị diễn ra tức khắc (đùng cái dừng animation)
-            Quaternion preRotate = transform.rotation; //Hướng trước khi quay
-            float rotationSpeedAlpha = turnSpeed * Time.deltaTime; // tính toán tốc độ quay ko phụ thuộc vào framerate
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(aimDir, Vector3.up), rotationSpeedAlpha); // Quay từ từ theo trục y để quay nhân vật xung 
-            Quaternion currentRotate = transform.rotation; 
-            float Dir = Vector3.Dot(aimDir,transform.right) >0 ? 1 : -1;
-            float rotationDelta = Quaternion.Angle(preRotate, currentRotate) * Dir;
-            currentTurnSpeed = rotationDelta / Time.deltaTime;
-        }
-
+        float currentTurnSpeed = movement.RotateTowards(aimDir);
+        
         animationTurnSpeed = Mathf.Lerp(animationTurnSpeed, currentTurnSpeed, Time.deltaTime * animTurnSpeedToLerp);
         animator.SetFloat("turnSpeed", animationTurnSpeed);
     }

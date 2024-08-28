@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1477287104339295581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000004768374, y: -0.0000009536743, z: -12.000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4525476878758520099}
   - component: {fileID: -6650266504356465225}
+  - component: {fileID: 413700272703671534}
   m_Layer: 0
   m_Name: Camera Controller
   m_TagString: Untagged
@@ -137,7 +138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d02afca7976e9448a0181a3be10fac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowTrans: {fileID: 1026815800022879070}
+  FollowTrans: {fileID: 0}
+  rotateSpeed: 50
+--- !u!114 &413700272703671534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483223849626418808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febd7d61fa0b4124e80b746acddfc858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeTransform: {fileID: 0}
+  shakeMagnitude: 1
+  shakeDuration: 0.2
+  shakeRecoverySpeed: 10
 --- !u!1 &9198155760930750163
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,14 +181,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9198155760930750163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.31550947, y: -0.6328142, z: 0.31550947, w: 0.6328142}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1026815800022879070}
   m_Father: {fileID: 4525476878758520099}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 53, y: -90, z: 0}
 --- !u!114 &9012350127879102443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fa6955622de574680191b66ce4454a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armLength: 0
+  armLength: 12
   child: {fileID: 1026815800022879070}

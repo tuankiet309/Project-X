@@ -1,0 +1,17 @@
+//After 28/08/2024 all update/commit details will be write in here
+
+***********Update 28/8/2024***********
+
+- Add behavior tree system for enemy AI, using the previous perception system to acknowledge the environment to implement behavior
+- Behavior tree system include: 
+	+BT Node 
+	+Behavior Tree 
+	+Compositor (Selector and Sequencer)
+	+Decorator
+	+BlackBoard: to store data 
+	+BT Task: actual behavior of the AI (patrol, attack, check last seen location).
+	+BT Task Group: to implement related BT Tasks into one group for easier management.
+	
+- Add health for player include: actual health, health bar UI
+- Add damaged visualization: camara shake when hitted, flashed when hitted
+- Add dead state: dead animation and block interaction with joystick when dead.

@@ -32,4 +32,8 @@ public class HealthComponent : MonoBehaviour
         }
         Debug.Log($"{gameObject} taking Damage {amount}, health now is {health}"); // đừng quan tâm
     }
+    public void BroadCastHealthValueImmediately()
+    {
+        onHealthChange?.Invoke(health, 0, maxHealth);
+    }
 }
