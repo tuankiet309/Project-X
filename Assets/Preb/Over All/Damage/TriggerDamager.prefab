@@ -48,8 +48,7 @@ MonoBehaviour:
   damageFriendly: 0
   damageEnemy: 1
   damageNeutral: 0
-  TeamInterface: {fileID: 0}
-  damage: 0
+  damage: 5
   trigger: {fileID: -6467927468035352318}
   startedEnable: 1
 --- !u!65 &-6467927468035352318

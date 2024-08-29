@@ -147,6 +147,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chomper
       objectReference: {fileID: 0}
+    - target: {fileID: 7006442707439898011, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7512629371456588183, guid: c56259e4c99dc5543a3961ee988626c1,
         type: 3}
       propertyPath: mesh
@@ -227,7 +232,7 @@ PrefabInstance:
     - target: {fileID: -114807042584107796, guid: 169a7812a66d29c48993f1113fd12ee4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -114807042584107796, guid: 169a7812a66d29c48993f1113fd12ee4,
         type: 3}

@@ -15,3 +15,9 @@
 - Add health for player include: actual health, health bar UI
 - Add damaged visualization: camara shake when hitted, flashed when hitted
 - Add dead state: dead animation and block interaction with joystick when dead.
+
+***********Update 29/8/2024***********
+- Add new enemy: Spitter
+- Spitter is similar to Chomper but have different attack: Spit out a toxic projectile to the air and explode when hitted.
+- Add a CoolDown decorator so enemy now will have cooldown for attacking.
+- Add Vfx for projectile

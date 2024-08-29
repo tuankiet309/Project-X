@@ -8,7 +8,7 @@ public class Chomper_Behavior : Behavior_Tree
     {
         Selector root_Selector = new Selector();
         //Attack
-        BTTask_AttackTargetGroup attackTargetGroup = new BTTask_AttackTargetGroup(this);
+        BTTask_AttackTargetGroup attackTargetGroup = new BTTask_AttackTargetGroup(this,0.5f);
         root_Selector.AddChild(attackTargetGroup);
 
         //Check Last Seen
