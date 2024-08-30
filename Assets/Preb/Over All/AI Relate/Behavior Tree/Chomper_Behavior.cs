@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Chomper_Behavior : Behavior_Tree
 {
+    [SerializeField] float acceptableDistance = 3f;
+    [SerializeField] float acceptableRadius = 10f;
+    [SerializeField] float coolDown = .6f;
     protected override void ConstructTree(out BT_Node root_Node)
     {
         Selector root_Selector = new Selector();
         //Attack
-        BTTask_AttackTargetGroup attackTargetGroup = new BTTask_AttackTargetGroup(this,0.5f);
+        BTTask_AttackTargetGroup attackTargetGroup = new BTTask_AttackTargetGroup(this, acceptableDistance, acceptableRadius, coolDown);
         root_Selector.AddChild(attackTargetGroup);
 
         //Check Last Seen

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
+public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface,ISpawnInterface
 {
-    HealthComponent healthComponent; //Thành phần Health
-    Animator animator; //Animator
-    Perception_Component perceeption_Component; //Thành phần tri giác
-    Behavior_Tree behavior; //Cây hành vi
-    MovementComponent movement_Component;
-    Vector3 preLocation;
+    [SerializeField]HealthComponent healthComponent; //Thành phần Health
+    [SerializeField]Animator animator; //Animator
+    [SerializeField]Perception_Component perceeption_Component; //Thành phần tri giác
+    [SerializeField]Behavior_Tree behavior; //Cây hành vi
+    [SerializeField]MovementComponent movement_Component;
+    
     [SerializeField] int TeamID = 2;
-
+    Vector3 preLocation;
     public int GetTeamID()
     {
         return (int)TeamID;
@@ -24,28 +24,30 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
         get { return animator; }
         private set { animator = value; }
     }
-  
+
+    private void Awake()
+    {
+        perceeption_Component.onPerceptionTargetChanged += TargetChange; //Gàn hàm targetChange để gọi mỗi khi có thay đổi về hành target
+                                                                         //Để ở awake nó có thể được spawn bởi spawner trước khi hàm start hoạt 
+    }
     protected virtual void Start()
     {
-        movement_Component = GetComponent<MovementComponent>();
-        healthComponent = GetComponent<HealthComponent>(); //Gán
-        animator = GetComponent<Animator>(); //Gán
-        perceeption_Component = GetComponent<Perception_Component>();
-        behavior = GetComponent<Behavior_Tree>();
+        
         if(healthComponent != null ) //nếu có
         {
             healthComponent.onHealthEmpty += StartDeath; //Gọi hàm StartDeath mỗi khi event onHealthEmpty đc invoke
             healthComponent.onTakeDamamge += TakenDamage; //Gọi hàm TakenDamage mỗi khi event onTakeDamamge đc invoke
+
         }
-        perceeption_Component.onPerceptionTargetChanged += TargetChange; //Gàn hàm targetChange để gọi mỗi khi có thay đổi về hành target
+
     }
-    
+
 
     private void TargetChange(GameObject target, bool sense)
     {
         if(sense)
         {
-            behavior.Board.SetOrAddData("Target", target); 
+            behavior.Board.SetOrAddData("Target", target.gameObject); 
         }
         else
         {
@@ -66,8 +68,14 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
     }
     public void OnDeathAnimationFinished() //Hủy gameObject khi chết// Gọi bằng animation event của animation dead
     {
+        Dead();
         Destroy(gameObject);
     }
+
+    protected virtual void Dead()
+    {
+    }
+
     private void TriggerDeathAnimation() 
     {
         if (animator != null)
@@ -83,6 +91,10 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
 
     private void CalculateSpeed()
     {
+        if (movement_Component==null)
+        {
+            return;
+        }
         Vector3 posDelta = transform.position - preLocation;
         float speed = posDelta.magnitude / Time.deltaTime;
         Animator.SetFloat("speed", speed);
@@ -91,7 +103,7 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
 
     private void OnDrawGizmos()
     {
-        if(behavior && behavior.Board.GetData("Target",out GameObject target))
+        if(behavior && behavior.Board.GetData("Target", out GameObject target))
         {
             Vector3 drawTargetPos = target.transform.position + Vector3.up;
             Gizmos.color = Color.red;
@@ -112,5 +124,21 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
 
     public virtual void AttackTarget(GameObject target)
     {
+    }
+
+    public void SpawnBy(GameObject spawnerGameobject)
+    {
+        Behavior_Tree spawnerBehaviorTree = spawnerGameobject.GetComponent<Behavior_Tree>();
+
+        if (spawnerBehaviorTree != null && spawnerBehaviorTree.Board.GetData<GameObject>("Target", out GameObject spawnerTarget))
+        {
+            Debug.Log(spawnerTarget + "++++++++++++++++++++++++++++++");
+            Perception_Stimuli targetStimuli = spawnerTarget.GetComponent<Perception_Stimuli>();
+            if(perceeption_Component && targetStimuli)
+            {
+                perceeption_Component.AssignPercivedStimuli(targetStimuli);
+            }
+        }
+
     }
 }

@@ -37,16 +37,17 @@ public class Projectile : MonoBehaviour, ITeamInterface
 
     private void OnTriggerEnter(Collider other)
     {
-        if(teamInterface.GetRalationToward(other.gameObject) !=ETeamRalation.Friendly)
+        ETeamRalation relation = teamInterface.GetRalationToward(other.gameObject);
+        if (relation != ETeamRalation.Friendly)
         {
-            Explode();
+            Explode(relation);
         }
     }
 
-    private void Explode()
+    private void Explode(ETeamRalation ralation)
     {
-        Vector3 spawnPos = transform.position;
-
+        Vector3 offset = ralation == ETeamRalation.Enemy ? Vector3.down : Vector3.zero;
+        Vector3 spawnPos = transform.position + offset;
         Instantiate(explosionVFX, spawnPos, Quaternion.identity);
         Destroy(gameObject);
     }

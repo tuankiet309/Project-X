@@ -27,12 +27,12 @@ public class BlackBoard
     public bool GetData<T>(string key, out T val)
     {
         val = default(T);
-        if(Black_Board_Data.ContainsKey(key))
+        if (Black_Board_Data.ContainsKey(key))
         {
-            val = (T)Black_Board_Data[key]; ;
-            return true;
+                val = (T) Black_Board_Data[key];
+                return true;
         }
-        return false;
+        return false; // Key not found
     }
     public bool HasKey(string key)
     {

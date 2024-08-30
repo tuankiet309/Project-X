@@ -12,7 +12,7 @@ public class Perception_Component : MonoBehaviour //Script tri giác dùng để
 
     public delegate void OnPerceptionTargetChanged(GameObject target, bool sense);  //Trong trường họp target bị thay đổi
     public event OnPerceptionTargetChanged onPerceptionTargetChanged;
-    void Start()
+    void Awake() //Đưa vào awake vì có thể đc spawn bởi spawner và được cài sẵn stimuli là người chơi.
     {
         foreach (Sense_Component s in senses) //Duyệt các các giác quan
         {
@@ -42,7 +42,7 @@ public class Perception_Component : MonoBehaviour //Script tri giác dùng để
         }
         else
         {
-                currentlyPerceivedStimuli.Remove(nodeFound); //Nếu ko cảm nhận đc thì remove chỉ 1 cái node này khỏi link list
+                currentlyPerceivedStimuli.Remove(nodeFound); //Nếu ko cảm nhận đc thì remove chỉ 1 cái node này khỏi link list                                                                  
                                                              //Hàm remove : node đầu tiên (tìm thấy) có giá trị Perception_Stimuli đó sẽ bị loại bỏ.
 
         }
@@ -64,6 +64,13 @@ public class Perception_Component : MonoBehaviour //Script tri giác dùng để
                 targetStimuli = null; //Cài target bằng null
 
             }
+        }
+    }
+    internal void AssignPercivedStimuli(Perception_Stimuli target)
+    {
+        if(senses.Count !=0)
+        {
+            senses[0].AssignPercivedStimuli(target);
         }
     }
 

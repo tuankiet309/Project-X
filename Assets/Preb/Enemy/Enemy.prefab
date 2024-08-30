@@ -233,8 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   senses:
-  - {fileID: 7637600339840866004}
   - {fileID: 6078957687616805619}
+  - {fileID: 7637600339840866004}
   - {fileID: 7961190221889712130}
 --- !u!195 &3615485900435837977
 NavMeshAgent:

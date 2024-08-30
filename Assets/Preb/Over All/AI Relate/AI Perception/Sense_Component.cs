@@ -87,4 +87,16 @@ public abstract class Sense_Component : MonoBehaviour //abstract
     {
         DrawDebug();
     }
+
+    internal void AssignPercivedStimuli(Perception_Stimuli target)
+    {
+        percivedStimuli.Add(target);
+        onPerceptionUpdate?.Invoke(target, true);
+        if(ForgettingRoutine.TryGetValue(target, out Coroutine forgetTarget))
+        {
+            StopCoroutine(forgetTarget);
+            ForgettingRoutine.Remove(target);
+        }
+        //What if we are forgetting ?
+    }
 }
