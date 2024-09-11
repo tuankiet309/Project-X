@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DamageComponent : MonoBehaviour
+public abstract class DamageComponent : MonoBehaviour, ITeamInterface
 {
     [SerializeField] bool damageFriendly;
     [SerializeField] bool damageEnemy;
     [SerializeField] bool damageNeutral;
     ITeamInterface TeamInterface;
+
+    public int GetTeamID()
+    {
+        if (TeamInterface == null)
+            return -1;
+        return TeamInterface.GetTeamID();
+
+    }
     public void SetTeamInterface(ITeamInterface @interface)
     {
         this.TeamInterface = @interface;

@@ -245,7 +245,7 @@ MonoBehaviour:
   behavior: {fileID: 6679455901684995264}
   movement_Component: {fileID: 5230695521894288252}
   TeamID: 2
-  projectilePrefab: {fileID: 4223958009003209046, guid: f4900dbdec8b02e4b804b2b87a3754a9,
+  projectilePrefab: {fileID: 4872653630987978873, guid: f4900dbdec8b02e4b804b2b87a3754a9,
     type: 3}
   lauchPoint: {fileID: 4160923420457289430}
 --- !u!114 &6679455901684995264

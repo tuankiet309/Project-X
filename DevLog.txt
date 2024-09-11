@@ -21,3 +21,11 @@
 - Spitter is similar to Chomper but have different attack: Spit out a toxic projectile to the air and explode when hitted.
 - Add a CoolDown decorator so enemy now will have cooldown for attacking.
 - Add Vfx for projectile
+
+***********Update 11/9/2024***********
+
+- Add an ability component with stamina , similar to health  component
+- Smooth, Interactive Ability Ui
+- Ability: Increase speed, Regen Health, Cast Fire damage around
+- Change PlayerHealthBar to PlayerValueGauge to apply stamina visualization.
+- Fix Add Team ID for Projectile so they wont trigger explode each other.

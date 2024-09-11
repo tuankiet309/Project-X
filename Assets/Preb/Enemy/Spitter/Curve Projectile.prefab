@@ -264,6 +264,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5890841769579648500, guid: b78444951dbcbe147a2a2866cccd9ea8,
         type: 3}
+      propertyPath: flyHight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5890841769579648500, guid: b78444951dbcbe147a2a2866cccd9ea8,
+        type: 3}
       propertyPath: explosionVFX
       value: 
       objectReference: {fileID: 2183349929170156470, guid: cba037542f8e4444ca5c78e1fd93ef63,
@@ -271,7 +276,12 @@ PrefabInstance:
     - target: {fileID: 6286498792039043875, guid: b78444951dbcbe147a2a2866cccd9ea8,
         type: 3}
       propertyPath: m_Name
-      value: Spitter_Projectile
+      value: Curve Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286498792039043875, guid: b78444951dbcbe147a2a2866cccd9ea8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8202709763904212113, guid: b78444951dbcbe147a2a2866cccd9ea8,
         type: 3}

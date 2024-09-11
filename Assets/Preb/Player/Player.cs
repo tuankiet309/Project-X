@@ -24,8 +24,12 @@ public class Player : MonoBehaviour,ITeamInterface
 
     [Header("Health And Damage")]
     [SerializeField] HealthComponent healthComponent;
-    [SerializeField] PlayerHealthBar healthBar;
+    [SerializeField] PlayerValueGauge healthBar;
     [SerializeField] UIManager UImanager;
+
+    [Header("Ability And Stamina")]
+    [SerializeField] AbilityComponent abilityComponent;
+    [SerializeField] PlayerValueGauge staminaBar;
 
     [Header("Inventory")]
     [SerializeField] InventoryComponent inventoryComponent; // Lấy scrript inventory để thực hiện đổi đồ
@@ -41,7 +45,15 @@ public class Player : MonoBehaviour,ITeamInterface
         characterController = GetComponent<CharacterController>();
         healthComponent.onHealthChange += HeathChange;
         healthComponent.BroadCastHealthValueImmediately();
+        
         healthComponent.onHealthEmpty += DeadSequence;
+        abilityComponent.onStaminaChanged += StaminaChange;
+        abilityComponent.BroadCastStaminaRightAway();
+    }
+
+    private void StaminaChange(float stamina, float maxStamina)
+    {
+        staminaBar.UpdateValueVisualization(stamina, 0, maxStamina);
     }
 
     private void DeadSequence()
@@ -54,7 +66,7 @@ public class Player : MonoBehaviour,ITeamInterface
 
     private void HeathChange(float health, float delta, float maxHealth)
     {
-        healthBar.UpdateHeath(health, delta, maxHealth);
+        healthBar.UpdateValueVisualization(health, delta, maxHealth);
     }
 
     public int GetTeamID()
@@ -145,5 +157,10 @@ public class Player : MonoBehaviour,ITeamInterface
         
         animationTurnSpeed = Mathf.Lerp(animationTurnSpeed, currentTurnSpeed, Time.deltaTime * animTurnSpeedToLerp);
         animator.SetFloat("turnSpeed", animationTurnSpeed);
+    }
+
+    internal void AddMoveSpeed(float boostAmount)
+    {
+        moveSpeed += boostAmount;
     }
 }

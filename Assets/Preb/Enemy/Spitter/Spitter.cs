@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spitter : Enemy
 {
-    [SerializeField] Projectile projectilePrefab;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform lauchPoint;
     
 
@@ -16,7 +16,15 @@ public class Spitter : Enemy
     }
     public void Shoot()
     {
-        Projectile newProjectile = Instantiate(projectilePrefab,lauchPoint.position,lauchPoint.rotation);
-        newProjectile.Lauch(gameObject, Destination);
+        GameObject newProjectile = Instantiate(projectilePrefab,lauchPoint.position,lauchPoint.rotation);
+        Projectile newIProjectile = newProjectile.GetComponent<Projectile>();
+        if (newIProjectile != null)
+        {
+            newIProjectile.Launch(gameObject, Destination);
+        }
+        else
+        {
+            Debug.Log("Cant find Iprojectile");
+        }
     }
 }

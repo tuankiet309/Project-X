@@ -295,7 +295,7 @@ MonoBehaviour:
   - VFX: {fileID: 5515065002404772068, guid: b5c8ca7ed10b61e499cce8ec3b6e2e4c, type: 3}
     size: 1
   - VFX: {fileID: 7226888052703040407, guid: 7ec363c8df426644ea85f8d6d570561c, type: 3}
-    size: 1
+    size: 3
   - VFX: {fileID: 4021103657954561960, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
     size: 1
 --- !u!114 &7205644446301690779
@@ -313,7 +313,6 @@ MonoBehaviour:
   gameObjectsToSpawn:
   - {fileID: 2385473287233284197, guid: 5666f7c54121dc0419e10aafa2ac86cf, type: 3}
   - {fileID: 2086759263055973270, guid: 1465cdcc0d96f594392e518b8e032f12, type: 3}
-  - {fileID: 7023365662599940668, guid: 27cdf1f16096563498cf41017d5904c4, type: 3}
   spawnTransform: {fileID: 60520196215156236}
 --- !u!114 &2097053150602445062
 MonoBehaviour:

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - RifleAttachSlot
   - PistolAttachSlot
+  - SpitterProjectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Spitter_Projectile
   - Water
   - UI
   - 

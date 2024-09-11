@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chomper_Behavior : Behavior_Tree
 {
-    [SerializeField] float acceptableDistance = 3f;
+    [SerializeField] float acceptableDistance = 2.5f;
     [SerializeField] float acceptableRadius = 10f;
     [SerializeField] float coolDown = .6f;
     protected override void ConstructTree(out BT_Node root_Node)

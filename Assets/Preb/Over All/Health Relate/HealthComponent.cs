@@ -21,6 +21,7 @@ public class HealthComponent : MonoBehaviour
         if (amount == 0 || health==0) //hết máu hoặc ko damage nhận vào
             return;
         health += amount; //thay đổi máu bằng damage
+        health = Mathf.Clamp(health, 0,maxHealth);
         if(amount<0) //Nếu nhận sát thương
         {
             onTakeDamamge?.Invoke(health,amount,maxHealth,Instigator); //Chạy các hàm đăng ký với event này

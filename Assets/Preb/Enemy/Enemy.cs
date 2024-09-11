@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
 
     private void Awake()
     {
+        perceeption_Component = GetComponent<Perception_Component>();
         perceeption_Component.onPerceptionTargetChanged += TargetChange; //Gàn hàm targetChange để gọi mỗi khi có thay đổi về hành target
                                                                          //Để ở awake nó có thể được spawn bởi spawner trước khi hàm start hoạt 
     }
