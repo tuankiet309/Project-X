@@ -29,3 +29,9 @@
 - Ability: Increase speed, Regen Health, Cast Fire damage around
 - Change PlayerHealthBar to PlayerValueGauge to apply stamina visualization.
 - Fix Add Team ID for Projectile so they wont trigger explode each other.
+
+***********Update 15/9/2024***********
+- Add shop system, change all ability and weapon into purchasable item
+- Implement UI for shop system
+- Add reward system when kill an enemy
+- Add new weapon: Shotgun - low range, multiple bullets.

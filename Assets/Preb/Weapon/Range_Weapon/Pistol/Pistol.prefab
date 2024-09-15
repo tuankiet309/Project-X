@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttachSlotTag: PistolAttachSlot
   overrideController: {fileID: 22100000, guid: f9a21fcfb3be70048a7aca59016b3c03, type: 2}
-  amount: 10
+  amount: 7
+  attackRateMult: 1.75
   bulletFX: {fileID: 265915992355755148}
 --- !u!114 &-9009446352636981890
 MonoBehaviour:

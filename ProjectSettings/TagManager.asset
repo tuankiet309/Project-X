@@ -7,6 +7,7 @@ TagManager:
   - RifleAttachSlot
   - PistolAttachSlot
   - SpitterProjectile
+  - ShotgunAttachSlot
   layers:
   - Default
   - TransparentFX

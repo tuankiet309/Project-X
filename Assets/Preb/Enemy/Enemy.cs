@@ -11,7 +11,8 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
     [SerializeField]Perception_Component perceeption_Component; //Thành phần tri giác
     [SerializeField]Behavior_Tree behavior; //Cây hành vi
     [SerializeField]MovementComponent movement_Component;
-    
+    [SerializeField] Reward killReward;
+
     [SerializeField] int TeamID = 2;
     Vector3 preLocation;
     public int GetTeamID()
@@ -62,9 +63,14 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
         
     }
 
-    private void StartDeath()
+    private void StartDeath(GameObject killer)
     {
         TriggerDeathAnimation(); //bắt đầu animaton chết
+        IRewardListener[] rewardListeners = killer.GetComponents<IRewardListener>();  
+        foreach(IRewardListener listener in rewardListeners)
+        {
+            listener.Reward(killReward);
+        }
         
     }
     public void OnDeathAnimationFinished() //Hủy gameObject khi chết// Gọi bằng animation event của animation dead

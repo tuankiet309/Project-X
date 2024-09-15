@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 226052736032038821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.016886164, y: -0.007215224, z: -0.028}
+  m_LocalPosition: {x: 0.016886164, y: -0.007215224, z: 0.346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9827,6 +9827,7 @@ MonoBehaviour:
   AttachSlotTag: RifleAttachSlot
   overrideController: {fileID: 22100000, guid: a32b642401733ee4bafc0a099b31de07, type: 2}
   amount: 5
+  attackRateMult: 2
   bulletFX: {fileID: 3399957691260120374}
 --- !u!114 &2191191910928749604
 MonoBehaviour:

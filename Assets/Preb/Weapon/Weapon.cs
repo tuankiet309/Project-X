@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] string AttachSlotTag; //Tag để nhận biết slot để gán vũ khí vào sao cho hợp với model và animation
     [SerializeField] AnimatorOverrideController overrideController; //Animatior override để thay đổi animation cầm súng với từng sứng khác nhau
     [SerializeField] protected float amount = -2f; //Sát thương
+    [SerializeField] protected float attackRateMult = 2f;
 
     public abstract void Attack() ; //Abstract để có thể tùy chỉnh ở class con, có thể là range attack hoặc melee
     public string GetAttachSlotTag() //Lấy tag của weapon
@@ -24,6 +25,7 @@ public abstract class Weapon : MonoBehaviour
     {
         gameObject.SetActive(true); //Activate gameObject của vũ khí
         Owner.GetComponent<Animator>().runtimeAnimatorController = overrideController; //Đổi animator của player thành animator của vũ khi để thay đổi animation cầm súng với từng sứng khác nhau
+        Owner.GetComponent<Animator>().SetFloat("attackSpeed",attackRateMult);
     }
     public void Unequip()
     {

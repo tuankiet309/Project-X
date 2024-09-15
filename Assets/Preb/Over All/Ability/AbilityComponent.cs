@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityComponent : MonoBehaviour
+public class AbilityComponent : MonoBehaviour, IPurchaseListener, IRewardListener
 {
     [SerializeField] Ability[] IniitialAbilities; //
 
@@ -60,5 +60,19 @@ public class AbilityComponent : MonoBehaviour
     public void BroadCastStaminaRightAway()
     {
         onStaminaChanged?.Invoke(stamina, maxStamina);
+    }
+
+    public bool HandlePurchase(UnityEngine.Object newPurchase)
+    {
+        Ability itemAbility = newPurchase as Ability;
+        if (itemAbility == null) return false;
+        GiveAbility(itemAbility);
+        return true;
+    }
+
+    public void Reward(Reward reward)
+    {
+        stamina = Mathf.Clamp(stamina+reward.staminaReward,0,maxStamina);
+        BroadCastStaminaRightAway();
     }
 }

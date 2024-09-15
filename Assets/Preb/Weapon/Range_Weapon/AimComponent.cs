@@ -10,7 +10,7 @@ public class AimComponent : MonoBehaviour
     
     
 
-    public GameObject GetAimTarget(out Vector3 aimDir) //Lấy vật đc ngắm// aimDir dể trả ra hướng ngắm
+    public GameObject GetAimTargetBaseOnAimDir(out Vector3 aimDir) //Lấy vật đc ngắm// aimDir dể trả ra hướng ngắm
     {
         Vector3 aimPos = Muzzle.position;  //Lấy vị trí ngắm
         aimDir = GetAimDir(); //Lấy hướng ngắm
@@ -21,7 +21,18 @@ public class AimComponent : MonoBehaviour
         }
         return null; //Còn không thì trả null
     }
-    Vector3 GetAimDir() //Lấy hướng ngắm
+
+    public GameObject GetAimTargetBasedOnDifferentDir(Vector3 inDir)
+    {
+        Vector3 aimPos = Muzzle.position;  
+
+        if (Physics.Raycast(aimPos, inDir, out RaycastHit hitInfo, aimRange, aimLayerMasked)) 
+        {
+            return hitInfo.collider.gameObject; 
+        }
+        return null; 
+    }
+    public Vector3 GetAimDir() //Lấy hướng ngắm
     {
         Vector3 muzzleDir = Muzzle.forward; //lấy hướng của lòng súng
         return new Vector3(muzzleDir.x,0,muzzleDir.z); //lấy hướng ngắm theo mặt phẳng xz, không lấy y để tránh súng bắt giật lên trên trời do animation

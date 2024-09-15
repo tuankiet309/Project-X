@@ -56,7 +56,7 @@ public class Player : MonoBehaviour,ITeamInterface
         staminaBar.UpdateValueVisualization(stamina, 0, maxStamina);
     }
 
-    private void DeadSequence()
+    private void DeadSequence(GameObject killer)
     {
         animator.SetLayerWeight(2, 1);
         animator.SetTrigger("isDead");
@@ -79,6 +79,8 @@ public class Player : MonoBehaviour,ITeamInterface
     }
     private void StartSwitchWeapon() //Hàm thay đổi vũ khí
     {
+        if (inventoryComponent.GetWeaponCount() < 2)
+            return;
         animator.SetTrigger("switching"); //Bắt đầu trigger để thực hiện animation đổi vũ khi
         
     }

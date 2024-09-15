@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
         transform.position = attachedScreenPoint;
 
     }
-    internal void OnOwnerDead()
+    internal void OnOwnerDead(GameObject killer)
     {
         Destroy(gameObject);
     }
