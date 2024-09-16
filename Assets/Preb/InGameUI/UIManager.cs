@@ -7,8 +7,9 @@ using UnityEngine.Events;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup GameplayControl;
-    [SerializeField] CanvasGroup GameplayMenu;
+    [SerializeField] CanvasGroup PauseMenu;
     [SerializeField] CanvasGroup Shop;
+    [SerializeField] CanvasGroup DeathMenu;
 
     CanvasGroup currentActiveGroup;
 
@@ -54,8 +55,18 @@ public class UIManager : MonoBehaviour
     internal void SwitchToShop()
     {
         SetCurrentActiveGroup(Shop);
+        GameStatic.SetGamePause(true);
     }
-
+    public void SwitchToPause()
+    {
+        SetCurrentActiveGroup(PauseMenu);
+        GameStatic.SetGamePause(true);
+    }
+    internal void SwitchToGameplay()
+    {
+        SetCurrentActiveGroup(GameplayControl);
+        GameStatic.SetGamePause(false);
+    }
     public void SetGameplayControlEnable(bool enable)
     {
         SetCanvasGroupEnable(GameplayControl, enable);
@@ -63,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void SetGameplayMenuEnable(bool enable)
     {
-        SetCanvasGroupEnable(GameplayMenu, enable);
+        SetCanvasGroupEnable(PauseMenu, enable);
     }
 
     private void SetCanvasGroupEnable(CanvasGroup grp, bool enable)
@@ -72,8 +83,9 @@ public class UIManager : MonoBehaviour
         grp.blocksRaycasts = enable;
     }
 
-    internal void SwitchToGameplay()
+    internal void SwitchToDeathMenu()
     {
-        SetCurrentActiveGroup(GameplayControl);
+        SetCurrentActiveGroup(DeathMenu);
+        GameStatic.SetGamePause(true);
     }
 }

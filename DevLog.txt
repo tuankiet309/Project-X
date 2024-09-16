@@ -29,9 +29,25 @@
 - Ability: Increase speed, Regen Health, Cast Fire damage around
 - Change PlayerHealthBar to PlayerValueGauge to apply stamina visualization.
 - Fix Add Team ID for Projectile so they wont trigger explode each other.
+- Add alternative spitter: Greater Spitter - can shoot 3 projectiles at the same time.
 
 ***********Update 15/9/2024***********
 - Add shop system, change all ability and weapon into purchasable item
 - Implement UI for shop system
 - Add reward system when kill an enemy
 - Add new weapon: Shotgun - low range, multiple bullets.
+- Fix some bugs related to switch weapon.
+
+***********Update 15/9/2024***********
+- Ui and Scene manager
+- Add main menu scene
+- Add death UI
+- Navigate between scenes and UIs
+- Fix a load of bugs related to UI and gameplay and character models 
+- Tweak and add light the bullet fx particle.
+
+TO DO LIST
+- WILL CHANGE UI AND SCENE MANAGER TO SINGLETON
+- FIX SOME SCRIPTS TO BE MORE LOOSE AND LESS DEPENDENT ON OTHERS (USING OBSEVER PROPPERLY ?)
+- CONSIDER BETWEEN USING 1 SCENE FOR MULTIPLE LEVELS OR USING MULTIPLE SCENE.
+- BOSS WITH CUTSCENE ?

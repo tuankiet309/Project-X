@@ -165,4 +165,8 @@ public class Player : MonoBehaviour,ITeamInterface
     {
         moveSpeed += boostAmount;
     }
+    public void DeadFinish()
+    {
+        UImanager.SwitchToDeathMenu();
+    }
 }
