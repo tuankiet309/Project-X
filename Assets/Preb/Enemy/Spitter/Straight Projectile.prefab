@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 5861795100050179054, guid: b78444951dbcbe147a2a2866cccd9ea8,
         type: 3}
       propertyPath: damage
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6286498792039043875, guid: b78444951dbcbe147a2a2866cccd9ea8,
         type: 3}
@@ -366,6 +366,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 9077029504216381772}
   m_SourcePrefab: {fileID: 100100000, guid: b78444951dbcbe147a2a2866cccd9ea8, type: 3}
+--- !u!114 &680799064287070287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3747676656138938946, guid: b78444951dbcbe147a2a2866cccd9ea8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4427253063288398349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76b7f36d191fae43808c495c29e434b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &5335516922906938721 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8609566832663506796, guid: b78444951dbcbe147a2a2866cccd9ea8,
@@ -398,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5335516922906938721}
   damageComponent: {fileID: 7793906462611038691}
+  explodeTrigger: {fileID: 680799064287070287}
   explosionVFX: {fileID: 2183349929170156470, guid: cba037542f8e4444ca5c78e1fd93ef63,
     type: 3}
   flySpeed: 5

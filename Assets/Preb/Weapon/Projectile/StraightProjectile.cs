@@ -13,7 +13,15 @@ public class StraightProjectile : Projectile,  IExplodeAble
     }
     public override void Explode()
     {
-        Instantiate(explosionVFX,transform.position, Quaternion.identity);
+        Vector3 spawnPos = transform.position;
+        Instantiate(explosionVFX, spawnPos, Quaternion.identity);
+        explodeTrigger.SetDamageEnable(true);
+        StartCoroutine(StartDestroy()); // Make sure these logic can be aplied before destroy 
+    }
+    IEnumerator StartDestroy()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         Destroy(gameObject);
     }
 
@@ -31,6 +39,10 @@ public class StraightProjectile : Projectile,  IExplodeAble
     {
         yield return new WaitForSeconds(lifeTime);
         Explode();
+    }
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
     }
 
 }

@@ -49,6 +49,7 @@ public class Player : MonoBehaviour,ITeamInterface
         healthComponent.onHealthEmpty += DeadSequence;
         abilityComponent.onStaminaChanged += StaminaChange;
         abilityComponent.BroadCastStaminaRightAway();
+        GameStatic.GameStarted();
     }
 
     private void StaminaChange(float stamina, float maxStamina)
@@ -147,7 +148,7 @@ public class Player : MonoBehaviour,ITeamInterface
 
     private void UpdateCamera()
     {
-        if ((moveInput.magnitude != 0 || aimInput.magnitude!=0) && cameraController != null) //Nếu 2 stick đc kéo thực hiện quay camera
+        if ((moveInput.magnitude != 0 && aimInput.magnitude == 0) && cameraController != null) //Nếu 2 stick đc kéo thực hiện quay camera
         {
             cameraController.AddYawnInput(moveInput.x); //truyền tham số giá trị khi joystick kéo trái kéo phải để làm camera quay theo
         }

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 8934808698799863337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.56, z: 0.8}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0.884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,10 +124,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 957022039603209178, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 957022039603209178, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: detecedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b63b23c284dc045fcbccd1131f3242bc, type: 3}
     - target: {fileID: 1162877414161089046, guid: c56259e4c99dc5543a3961ee988626c1,
         type: 3}
       propertyPath: m_Radius
       value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615485900435837977, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 4439189850928976078, guid: c56259e4c99dc5543a3961ee988626c1,
         type: 3}
@@ -210,6 +225,21 @@ PrefabInstance:
       propertyPath: blinkSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 8300000, guid: fce2f1f6c101f45bbae456ddcd524a0d, type: 3}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: death
+      value: 
+      objectReference: {fileID: 8300000, guid: a246e78657d204910afaf183ba2e798b, type: 3}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -281,6 +311,10 @@ MonoBehaviour:
   perceeption_Component: {fileID: 8108252302150018519}
   behavior: {fileID: 6679455901684995264}
   movement_Component: {fileID: 5230695521894288252}
+  killReward:
+    healthReward: 0
+    creditReward: 0
+    staminaReward: 0
   TeamID: 2
   projectilePrefab: {fileID: 7660308970971099438, guid: 46b45d55131b73f499ed6c8d4f731255,
     type: 3}

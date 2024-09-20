@@ -15,6 +15,10 @@ public abstract class Ability : ScriptableObject
     public delegate void OnCoolDownStart();
     public event OnCoolDownStart onCoolDownStart;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip abilitySound;
+    [SerializeField] float volume;
+
     public abstract void Active();
 
 
@@ -34,7 +38,7 @@ public abstract class Ability : ScriptableObject
         }
 
         StartAbilityCoolDown();
-        //other stuff
+        GameStatic.PlayAudioAtPlayer(abilitySound, volume);
         return true;    
     }
     void StartAbilityCoolDown()

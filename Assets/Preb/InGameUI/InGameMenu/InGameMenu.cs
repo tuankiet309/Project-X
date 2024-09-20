@@ -6,29 +6,30 @@ using UnityEngine.UI;
 
 public class InGameMenu : MonoBehaviour
 {
-    [SerializeField] Button resumeBTN;
-    [SerializeField] Button restartBTN;
-    [SerializeField] Button menuBTN;
+
     [SerializeField] UIManager manager;
     [SerializeField] LevelManager levelManager;
     private void Start()
     {
-        resumeBTN.onClick.AddListener(ResumeLevel);
-        restartBTN.onClick.AddListener(RestartLevel);
-        menuBTN.onClick.AddListener(GoToMenu);
+
     }
 
-    private void GoToMenu()
+    public void NextLevel()
+    {
+        levelManager.LoadNextLevel();
+    }
+
+    public void GoToMenu()
     {
         levelManager.GoToMainMenu();
     }
 
-    private void RestartLevel()
+    public void RestartLevel()
     {
         levelManager.RestartCurrentLevel();
     }
 
-    private void ResumeLevel()
+    public void ResumeLevel()
     {
         manager.SwitchToGameplay();
     }

@@ -76,9 +76,16 @@ public abstract class Enemy : MonoBehaviour,BehaviorTreeInterface,ITeamInterface
     public void OnDeathAnimationFinished() //Hủy gameObject khi chết// Gọi bằng animation event của animation dead
     {
         Dead();
-        Destroy(gameObject);
+        //Need coroutine to make sure some logic apply on Dead() can run before destroy;
+        StartCoroutine(StartDestroy());
     }
 
+    IEnumerator StartDestroy()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
+    }
     protected virtual void Dead()
     {
     }

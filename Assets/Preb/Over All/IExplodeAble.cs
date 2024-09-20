@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IExplodeAble 
 {
+    
     public void Explode();
 }

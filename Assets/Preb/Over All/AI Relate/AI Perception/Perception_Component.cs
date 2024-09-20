@@ -10,6 +10,11 @@ public class Perception_Component : MonoBehaviour //Script tri giác dùng để
 
     Perception_Stimuli targetStimuli; //Mục tiêu cảm nhận chính hiện tại để thực hiên các hành động liên quan
 
+    [Header("Audio")]
+    [SerializeField] AudioClip detecedClip;
+    [SerializeField] float volume;
+
+
     public delegate void OnPerceptionTargetChanged(GameObject target, bool sense);  //Trong trường họp target bị thay đổi
     public event OnPerceptionTargetChanged onPerceptionTargetChanged;
     void Awake() //Đưa vào awake vì có thể đc spawn bởi spawner và được cài sẵn stimuli là người chơi.
@@ -54,6 +59,8 @@ public class Perception_Component : MonoBehaviour //Script tri giác dùng để
             {
                 targetStimuli = highest_Stimuli; //Gán target là cái đầu tiên
                 onPerceptionTargetChanged?.Invoke(targetStimuli.gameObject,true); //Gọi các hàm và thông báo có thay đổi và có cảm nhạn được target
+                Vector3 audioPos = transform.position;
+                GameStatic.PlayAudioAtLoc(detecedClip, audioPos,volume);
             }
         }
         else //nếu danh sách các stimuli bằng 0

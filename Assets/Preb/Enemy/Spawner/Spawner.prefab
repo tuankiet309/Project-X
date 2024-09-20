@@ -124,6 +124,16 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 957022039603209178, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 957022039603209178, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: detecedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b63b23c284dc045fcbccd1131f3242bc, type: 3}
     - target: {fileID: 4439189850928976078, guid: c56259e4c99dc5543a3961ee988626c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,6 +214,21 @@ PrefabInstance:
       propertyPath: mesh
       value: 
       objectReference: {fileID: 3755840192883870311}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 8300000, guid: c1c63d14bc9d9497b8f9b39c4ea3b1c7, type: 3}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: death
+      value: 
+      objectReference: {fileID: 8300000, guid: 20b5f8cd003d14fca9e07f3eb4ed6018, type: 3}
+    - target: {fileID: 7641501009530652624, guid: c56259e4c99dc5543a3961ee988626c1,
+        type: 3}
+      propertyPath: volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8351310088516448596, guid: c56259e4c99dc5543a3961ee988626c1,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -290,6 +315,10 @@ MonoBehaviour:
   perceeption_Component: {fileID: 4009240599846195035}
   behavior: {fileID: 2097053150602445062}
   movement_Component: {fileID: 0}
+  killReward:
+    healthReward: 0
+    creditReward: 0
+    staminaReward: 0
   TeamID: 2
   DeadVFX:
   - VFX: {fileID: 5515065002404772068, guid: b5c8ca7ed10b61e499cce8ec3b6e2e4c, type: 3}

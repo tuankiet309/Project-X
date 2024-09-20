@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] CanvasGroup PauseMenu;
     [SerializeField] CanvasGroup Shop;
     [SerializeField] CanvasGroup DeathMenu;
+    [SerializeField] CanvasGroup WinMenu;
+    [SerializeField] UIAudio UIAudioPlayer;
 
     CanvasGroup currentActiveGroup;
 
@@ -32,6 +34,14 @@ public class UIManager : MonoBehaviour
             SetCurrentActiveGroup(AllChildren[0]);
             currentActiveGroup = GameplayControl;
         }
+        LevelManager.onLevelFinish += LevelFinish;
+    }
+
+    private void LevelFinish()
+    {
+        SetCurrentActiveGroup(WinMenu);
+        GameStatic.SetGamePause(true);
+        UIAudioPlayer.PlayWin();
     }
 
     private void SetCurrentActiveGroup(CanvasGroup canvasGroup)

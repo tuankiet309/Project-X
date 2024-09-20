@@ -46,6 +46,14 @@
 - Fix a load of bugs related to UI and gameplay and character models 
 - Tweak and add light the bullet fx particle.
 
+***********Update 20/9/2024***********
+- Import boss assets
+- Change the explode mechanic of explode chomper and enemy's projectile
+- Tweak some build settings
+- Prepare for boss behavior.
+- Fix bugs: UI, weird rotation from enemy
+
+
 TO DO LIST
 - WILL CHANGE UI AND SCENE MANAGER TO SINGLETON
 - FIX SOME SCRIPTS TO BE MORE LOOSE AND LESS DEPENDENT ON OTHERS (USING OBSEVER PROPPERLY ?)

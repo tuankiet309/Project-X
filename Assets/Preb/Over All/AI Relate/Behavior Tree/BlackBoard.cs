@@ -29,8 +29,9 @@ public class BlackBoard
         val = default(T);
         if (Black_Board_Data.ContainsKey(key))
         {
-                val = (T) Black_Board_Data[key];
-                return true;
+
+            val = (T)Black_Board_Data[key];
+            return true;
         }
         return false; // Key not found
     }

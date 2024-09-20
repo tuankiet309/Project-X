@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerDamageComponent : DamageComponent
 {
     [SerializeField] float damage = 0f;
-    [SerializeField] BoxCollider trigger;
+    [SerializeField] Collider trigger;
     [SerializeField] bool startedEnable = false;
 
 

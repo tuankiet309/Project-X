@@ -6,8 +6,9 @@ public class RangeWeapon : Weapon
 {
     protected AimComponent aimComponent; //Lấy aimCompoent
     [SerializeField] protected  ParticleSystem bulletFX; //Hiệu ứng bắn súng
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         aimComponent = GetComponent<AimComponent>(); //Gán aimCompent
     }
     public override void Attack() //Hàm tấn công
@@ -16,6 +17,7 @@ public class RangeWeapon : Weapon
         DamageOnGameObject(target, amount); //Gây sát thương lên vật bị ngắm tới
         bulletFX.transform.rotation = Quaternion.LookRotation(aimDir); //Cài đặt hiệu ứng
         bulletFX.Emit(bulletFX.emission.GetBurst(0).maxCount); //Bắt đầu hiệu ứng
+        PlayWeaponAudio();
     }
 
 

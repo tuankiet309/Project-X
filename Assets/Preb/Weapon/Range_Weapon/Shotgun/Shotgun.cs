@@ -13,6 +13,7 @@ public class Shotgun : RangeWeapon
     public override void Attack()
     {
         ShootPellet();
+        PlayWeaponAudio();
     }
 
     private void ShootPellet()
@@ -22,7 +23,6 @@ public class Shotgun : RangeWeapon
 
         for (int i = 0; i < pellets; i++)
         {
-            // Calculate direction for each pellet
             Quaternion calAngle = Quaternion.Euler(0, -spreadAngle + i * angleEach, 0);
             Vector3 pelletDir = calAngle * aimDir;
             Debug.DrawRay(aimComponent.transform.position, pelletDir * 1000, Color.red, 1f);

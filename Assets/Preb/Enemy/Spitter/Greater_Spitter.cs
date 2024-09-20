@@ -36,7 +36,7 @@ public class Greater_Spitter : Enemy
 
             if (newProjectile != null)
             {
-                newProjectile.Launch(gameObject, destination);
+                newProjectile.Launch(this.gameObject, destination);
             }
             else
             {
