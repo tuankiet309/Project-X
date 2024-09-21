@@ -38,7 +38,7 @@
 - Add new weapon: Shotgun - low range, multiple bullets.
 - Fix some bugs related to switch weapon.
 
-***********Update 15/9/2024***********
+***********Update 16/9/2024***********
 - Ui and Scene manager
 - Add main menu scene
 - Add death UI
@@ -52,6 +52,10 @@
 - Tweak some build settings
 - Prepare for boss behavior.
 - Fix bugs: UI, weird rotation from enemy
+***********Minor update 21/9/2024***********
+- Change the reward mechanic: 
+ Old: immediately reward health/stamina/credit after kill enemy .
+=>New:  Enemy drop health/stamina/credit bottle after death. Player can collect them to heal/get credits. 
 
 
 TO DO LIST

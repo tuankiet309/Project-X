@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 7512629371456588183}
   - component: {fileID: -1335410501155749304}
   - component: {fileID: 8814841450529954330}
+  - component: {fileID: 8435958812249190108}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -178,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73d3c9ea27e12546bba88366d3e578e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarToSpawn: {fileID: -8281483123963146000, guid: 5b7acb8727a67db4dbe4c9c1f85bd776,
-    type: 3}
+  healthBarToSpawn: {fileID: -8281483123963146000, guid: 5b7acb8727a67db4dbe4c9c1f85bd776, type: 3}
   attachedPoin: {fileID: 8351310088516448596}
   healthComponent: {fileID: 7641501009530652624}
 --- !u!114 &7637600339840866004
@@ -416,3 +416,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932aa2d90cad47d488a290bce8cab055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8435958812249190108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7006442707439898011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce292e61ecf11e843af4e526dade5a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardEntries:
+  - reward: {fileID: 2547651132713203865, guid: 5ae7aa63a193bb44ca65dc85b55cb0cb, type: 3}
+    chance: 24
